@@ -1,14 +1,17 @@
+from _typeshed import StrOrBytesPath
 import argparse
 import os
 import glob
+from typing import Tuple
 from PIL import Image, ImageOps
+from PIL.Image import Image as ImageType
 
-
-BORDER_PADDING = 200
+THUMBNAIL_SIZE = (2000, 2000)
+BORDER_PADDING = 60
 BORDER_COLOR = 'white'
 
 
-def resize_square(image, fill_color=(255, 255, 255)):
+def resize_square(image: ImageType, fill_color: Tuple[int]=(255, 255, 255)):
     width, height = image.size
     side_length = max(width, height)
 
@@ -16,6 +19,7 @@ def resize_square(image, fill_color=(255, 255, 255)):
     resized_image.paste(
         image, (int((side_length - width) / 2),
                 int((side_length - height) / 2)))
+    resized_image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
 
     return resized_image
 
@@ -34,7 +38,7 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def directory_path(path):
+def directory_path(path: str):
     if os.path.isdir(path):
         return path
     else:
@@ -57,7 +61,6 @@ def main():
 
         padded_square_image.save(os.path.join(
             parsed_arguments.dst, filename), quality=100)
-
 
 if __name__ == '__main__':
     main()
