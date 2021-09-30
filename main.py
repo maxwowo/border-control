@@ -1,4 +1,3 @@
-from _typeshed import StrOrBytesPath
 import argparse
 import os
 import glob
