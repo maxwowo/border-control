@@ -18,7 +18,7 @@ def resize_square(image: ImageType, fill_color: Tuple[int]=(255, 255, 255)):
     resized_image.paste(
         image, (int((side_length - width) / 2),
                 int((side_length - height) / 2)))
-    resized_image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+    resized_image.thumbnail(THUMBNAIL_SIZE, Image.LANCZOS)
 
     return resized_image
 
