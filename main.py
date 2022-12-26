@@ -10,7 +10,7 @@ BORDER_PADDING = 60
 BORDER_COLOR = 'white'
 
 
-def resize_square(image: ImageType, fill_color: Tuple[int]=(255, 255, 255)):
+def resize_square(image: ImageType, fill_color: Tuple[int] = (255, 255, 255)):
     width, height = image.size
     side_length = max(width, height)
 
@@ -18,7 +18,7 @@ def resize_square(image: ImageType, fill_color: Tuple[int]=(255, 255, 255)):
     resized_image.paste(
         image, (int((side_length - width) / 2),
                 int((side_length - height) / 2)))
-    resized_image.thumbnail(THUMBNAIL_SIZE, Image.LANCZOS)
+    resized_image.thumbnail(THUMBNAIL_SIZE, Image.Resampling.LANCZOS)
 
     return resized_image
 
@@ -60,6 +60,7 @@ def main():
 
         padded_square_image.save(os.path.join(
             parsed_arguments.dst, filename), quality=100)
+
 
 if __name__ == '__main__':
     main()
