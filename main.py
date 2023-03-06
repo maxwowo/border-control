@@ -24,14 +24,14 @@ def resize_square(image: ImageType, fill_color: Tuple[int] = (255, 255, 255)):
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Add borders to images.')
+    parser = argparse.ArgumentParser(description='A simple utility for adding borders to images')
     parser.add_argument('--src',
                         type=directory_path,
-                        help='Image source directory.',
+                        help='image source directory (only JPG files are transformed)',
                         required=True)
     parser.add_argument('--dst',
                         type=directory_path,
-                        help='Image output directory.',
+                        help='image output directory',
                         required=True)
 
     return parser.parse_args()
@@ -42,7 +42,7 @@ def directory_path(path: str):
         return path
     else:
         raise argparse.ArgumentTypeError(
-            f"Given path {path} is not a valid path")
+            f"Given path {path} is not a valid directory")
 
 
 def main():
